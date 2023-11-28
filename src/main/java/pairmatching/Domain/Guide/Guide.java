@@ -23,6 +23,13 @@ public class Guide {
     private void getCourses(String guideFileName) {
         readCrewNameFromResources(guideFileName);
         this.courses = readGuidesBetweenSections("## 과정", "## 레벨");
+        substringCourses();
+    }
+
+    private void substringCourses() {
+        this.courses = courses.stream()
+                .map(course -> course.substring(2))
+                .collect(Collectors.toList());
     }
 
     private void getMissions(String guideFileName) {

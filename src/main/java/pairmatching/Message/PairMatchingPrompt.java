@@ -8,4 +8,8 @@ public class PairMatchingPrompt {
             + "3. 페어 초기화\n"
             + "Q. 종료";
 
+    public static final String MATCHING_SHOP = "#############################################";
+    public static final String MATCHING_COURSE = "과정: %s";
+    public static final String MATCHING_MISSION = "미션:";
+    public static final String LEVEL_MISSIONS = "  - %s: %s";
 }
