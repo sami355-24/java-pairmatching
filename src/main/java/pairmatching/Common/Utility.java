@@ -36,7 +36,7 @@ public class Utility {
     }
 
 
-    private List<String> readGuidesBetweenCourses(String start, String end) {
+    public static List<String> readGuidesBetweenSections(String start, String end) {
         return getResourceAsStream("guide.md")
                 .map(inputStream -> new BufferedReader(new InputStreamReader(inputStream)))
                 .map((BufferedReader reader) -> extractItemsBetweenCourses(reader, start, end))
