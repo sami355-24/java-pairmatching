@@ -1,6 +1,7 @@
 package pairmatching.Domain.Crew;
 
-import static pairmatching.Domain.Crew.ReadFile.readFileFromResources;
+
+import static pairmatching.Common.Utility.readFileFromResources;
 
 import java.util.Collections;
 import java.util.List;
