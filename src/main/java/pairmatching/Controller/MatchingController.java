@@ -31,7 +31,7 @@ public class MatchingController implements Controller {
         outputView.showDelimiter("");
     }
 
-    private String inputOptions() {
+    protected String inputOptions() {
         String options = inputView.inputCourseLevelMission();
         MatchingResult result = new MatchingResult(options);
         if (!matchingResultGroup.isExistMatchingResult(options)) {
@@ -44,9 +44,10 @@ public class MatchingController implements Controller {
 
     private void retryMatch(String options, MatchingResult result) {
         String userInput = inputView.inputUserIntent();
-        if (userInput.contains("네")) {
+        if (userInput.equals("네")) {
             matchingResultGroup.addMatchingResult(options, result);
         }
+        throw new IllegalArgumentException();
     }
 
     private void showMatchingResult(String options) {
