@@ -5,11 +5,11 @@ import static pairmatching.Domain.Crew.FrontendCrew.getFrontendCrews;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MatchingResult {
     private String course;
@@ -68,5 +68,9 @@ public class MatchingResult {
                 .orElseThrow(() -> new IllegalArgumentException("Set is empty"));
         set.remove(randomElement);
         return randomElement;
+    }
+
+    public Set<Set<String>> getResult() {
+        return Collections.unmodifiableSet(result);
     }
 }

@@ -2,7 +2,7 @@ package pairmatching.Controller;
 
 import static pairmatching.Controller.FrontController.guide;
 
-import java.sql.PreparedStatement;
+import java.util.Set;
 import pairmatching.Domain.MatchingResult;
 import pairmatching.Domain.MatchingResultGroup;
 import pairmatching.View.InputView;
@@ -17,7 +17,8 @@ public class MatchingController implements Controller {
     @Override
     public void run() {
         showOptions();
-        inputOptions();
+        String options = inputOptions();
+        showMatchingResult(options);
     }
 
     private void showOptions() {
@@ -30,14 +31,15 @@ public class MatchingController implements Controller {
         outputView.showDelimiter("");
     }
 
-    private void inputOptions() {
+    private String inputOptions() {
         String options = inputView.inputCourseLevelMission();
         MatchingResult result = new MatchingResult(options);
         if (!matchingResultGroup.isExistMatchingResult(options)) {
             matchingResultGroup.addMatchingResult(options, result);
-            return;
+            return options;
         }
         retryMatch(options, result);
+        return options;
     }
 
     private void retryMatch(String options, MatchingResult result) {
@@ -45,6 +47,12 @@ public class MatchingController implements Controller {
         if (userInput.contains("네")) {
             matchingResultGroup.addMatchingResult(options, result);
         }
+    }
+
+    private void showMatchingResult(String options) {
+        MatchingResult matchingResult = matchingResultGroup.findMatchingResult(options);
+        Set<Set<String>> result = matchingResult.getResult();
+        outputView.showMatchingResult(result);
     }
 
 

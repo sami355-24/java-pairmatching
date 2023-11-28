@@ -21,4 +21,5 @@ public class MatchingResultGroup {
     public MatchingResult findMatchingResult(String id) {
         return matchingResultGroup.get(id);
     }
+
 }
