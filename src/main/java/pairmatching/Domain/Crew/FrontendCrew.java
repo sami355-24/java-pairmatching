@@ -9,7 +9,7 @@ public class FrontendCrew {
 
     private List<String> frontendCrews;
 
-    private FrontendCrew(List<String> frontendCrews) {
+    public FrontendCrew() {
         this.frontendCrews = readFileFromResources("frontend-crew.md");
     }
 

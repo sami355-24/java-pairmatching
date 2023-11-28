@@ -9,7 +9,7 @@ public class BackendCrew {
 
     private List<String> backendCrews;
 
-    private BackendCrew(List<String> backendCrews) {
+    public BackendCrew() {
         this.backendCrews = readFileFromResources("backend-crew.md");
     }
 

@@ -1,9 +1,10 @@
 package pairmatching.View.IO;
 
-import static org.example.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
+
+import static pairmatching.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
-import org.example.Exception.CommonValidateException;
+import pairmatching.Exception.CommonValidateException;
 
 public class Reader {
 
