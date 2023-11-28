@@ -15,8 +15,8 @@ public class OutputView {
         Printer.printMessage(OPTION_MISSION);
     }
 
-    public void showDelimiter() {
-        Printer.printMessage(OPTION_SHOP);
+    public void showDelimiter(String prefix) {
+        Printer.printMessage(prefix + OPTION_SHOP);
     }
 
     public void showOptionsMissionPerLevel(String level, List<String> missions) {

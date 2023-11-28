@@ -21,13 +21,13 @@ public class MatchingController implements Controller {
     }
 
     private void showOptions() {
-        outputView.showDelimiter();
+        outputView.showDelimiter("\n");
         outputView.showOptionsCourses(guide.getCourses());
         for (int i = 0; i < guide.getLevels().size(); i++) {
             String level = guide.getLevels().get(i);
             outputView.showOptionsMissionPerLevel(level, guide.getMissionsPerLevel().get(level).getMissions());
         }
-        outputView.showDelimiter();
+        outputView.showDelimiter("");
     }
 
     private void inputOptions() {

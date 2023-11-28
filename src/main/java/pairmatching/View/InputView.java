@@ -8,9 +8,9 @@ import pairmatching.View.IO.Reader;
 
 public class InputView {
 
-    public int inputFunction() {
+    public String inputControllerNumber() {
         Printer.printMessage(SELECT_FUNCTION);
-        return Reader.getInt();
+        return Reader.getString();
     }
 
     public String inputCourseLevelMission() {

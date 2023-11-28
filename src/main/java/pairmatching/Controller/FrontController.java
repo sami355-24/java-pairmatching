@@ -7,18 +7,23 @@ import pairmatching.View.InputView;
 
 public class FrontController implements Controller{
 
-    private final Map<Integer, Controller> controllers;
+    private final Map<String, Controller> controllers;
     private static final InputView inputView = new InputView();
     static Guide guide = new Guide();
 
     public FrontController() {
         controllers = new HashMap<>();
-        controllers.put(1, new MatchingController());
+        controllers.put("1", new MatchingController());
     }
 
     @Override
     public void run() {
-        int controllerNumber = inputView.inputFunction();
-        controllers.get(controllerNumber).run();
+        while (true){
+            String controllerNumber = inputView.inputControllerNumber();
+            if (controllerNumber.equals("Q")){
+                break;
+            }
+            controllers.get(controllerNumber).run();
+        }
     }
 }
