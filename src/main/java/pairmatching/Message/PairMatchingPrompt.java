@@ -8,8 +8,11 @@ public class PairMatchingPrompt {
             + "3. 페어 초기화\n"
             + "Q. 종료";
 
-    public static final String MATCHING_SHOP = "#############################################";
-    public static final String MATCHING_COURSE = "과정: %s";
-    public static final String MATCHING_MISSION = "미션:";
-    public static final String LEVEL_MISSIONS = "  - %s: %s";
+    public static final String OPTION_SHOP = "#############################################";
+    public static final String OPTION_COURSE = "과정: %s";
+    public static final String OPTION_MISSION = "미션:";
+    public static final String OPTION_MISSIONS = "  - %s: %s";
+
+    public static final String INPUT_COURSE_LEVEL_MISSION = "과정, 레벨, 미션을 선택하세요.";
+    public static final String INPUT_COURSE_LEVEL_MISSION_EXAMPLE = "ex) 백엔드, 레벨1, 자동차경주";
 }

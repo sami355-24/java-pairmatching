@@ -8,13 +8,16 @@ import java.util.List;
 
 public class FrontendCrew {
 
-    private List<String> frontendCrews;
+    private static List<String> frontendCrews;
 
     public FrontendCrew() {
-        this.frontendCrews = readCrewNameFromResources("frontend-crew.md");
+        FrontendCrew.frontendCrews = readCrewNameFromResources("frontend-crew.md");
     }
 
-    public List<String> getFrontendCrews() {
+    public static List<String> getFrontendCrews() {
+        if (frontendCrews == null) {
+            new FrontendCrew();
+        }
         return Collections.unmodifiableList(frontendCrews);
     }
 }

@@ -30,8 +30,7 @@ public class Utility {
     public static List<String> readCrewNameFromResources(String fileName) {
         return getResourceAsStream(fileName)
                 .map(stream -> new BufferedReader(new InputStreamReader(stream)))
-                .map(reader -> reader.lines().collect(Collectors.joining("\n")))
-                .map(Collections::singletonList)
+                .map(reader -> reader.lines().collect(Collectors.toList()))
                 .orElse(Collections.emptyList());
     }
 
