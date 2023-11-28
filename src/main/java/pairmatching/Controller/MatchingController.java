@@ -4,6 +4,7 @@ import static pairmatching.Controller.FrontController.guide;
 
 import java.util.Set;
 import pairmatching.Domain.MatchingResult;
+import pairmatching.Domain.MatchingResultDecorator;
 import pairmatching.Domain.MatchingResultGroup;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
@@ -33,7 +34,7 @@ public class MatchingController implements Controller {
 
     protected String inputOptions() {
         String options = inputView.inputCourseLevelMission();
-        MatchingResult result = new MatchingResult(options);
+        MatchingResult result = new MatchingResultDecorator(options);
         if (!matchingResultGroup.isExistMatchingResult(options)) {
             matchingResultGroup.addMatchingResult(options, result);
             return options;
@@ -44,10 +45,9 @@ public class MatchingController implements Controller {
 
     private void retryMatch(String options, MatchingResult result) {
         String userInput = inputView.inputUserIntent();
-        if (userInput.equals("네")) {
+        if (userInput.contains("네")) {
             matchingResultGroup.addMatchingResult(options, result);
         }
-        throw new IllegalArgumentException();
     }
 
     private void showMatchingResult(String options) {

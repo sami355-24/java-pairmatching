@@ -23,7 +23,11 @@ public class FrontController implements Controller{
             if (controllerNumber.equals("Q")){
                 break;
             }
-            controllers.get(controllerNumber).run();
+            try {
+                controllers.get(controllerNumber).run();
+            } catch (NullPointerException e) {
+                System.out.println("재시도해주세요");
+            }
         }
     }
 }

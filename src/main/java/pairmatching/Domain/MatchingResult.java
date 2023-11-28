@@ -16,10 +16,11 @@ import pairmatching.Domain.Crew.BackendCrew;
 import pairmatching.Domain.Crew.FrontendCrew;
 
 public class MatchingResult {
-    private String course;
-    private String level;
-    private String mission;
-    private Set<Set<String>> result;
+
+    protected String course;
+    protected String level;
+    protected String mission;
+    protected Set<Set<String>> result;
 
     public MatchingResult(String option) {
         List<String> dividedOption = divideOption(option);
@@ -30,14 +31,14 @@ public class MatchingResult {
         makeMatchingResult();
     }
 
-    private List<String> divideOption(String option) {
+    protected List<String> divideOption(String option) {
         return Arrays.asList(option.split(", "));
     }
 
-    private void makeMatchingResult() {
+    protected void makeMatchingResult() {
         Set<String> crews = makeShuffledCrew(course);
         String courseName = course;
-        while (crews.size() > 3) {
+        while (!crews.isEmpty() && crews.size() != 3) {
             Set<String> pair = new HashSet<>();
             String pair1 = getRandomAndRemoveElement(crews);
             String pair2 = getRandomAndRemoveElement(crews);
@@ -57,7 +58,7 @@ public class MatchingResult {
     }
 
     private void isLeftCrewIsMoreThanThree(Set<String> crews) {
-        if (crews.size() % 2 != 0 && crews.size() >= 3) {
+        if (crews.size() % 2 != 0 && crews.size() == 3) {
             Set<String> pair = new HashSet<>();
             pair.add(getRandomAndRemoveElement(crews));
             pair.add(getRandomAndRemoveElement(crews));
@@ -80,12 +81,12 @@ public class MatchingResult {
 
     private void checkPair(String pair1, String pair2, String courseName) {
         if (courseName.contains("백엔드")) {
-            if (BackendCrew.isNeverPaired(pair1, pair2)) {
+            if (BackendCrew.isPairedInPast(pair1, pair2, level)) {
                 throw new IllegalArgumentException("이미 짝인 백엔드 크루입니다.");
             }
         }
         if (courseName.contains("프론트엔드")) {
-            if (FrontendCrew.isNeverPaired(pair1, pair2)) {
+            if (FrontendCrew.isPairedInPast(pair1, pair2, level)) {
                 throw new IllegalArgumentException("이미 짝인 프론트엔드 크루입니다.");
             }
         }
@@ -97,6 +98,7 @@ public class MatchingResult {
         for (int i = 0; i < pairSize; i++) {
             for (int j = i + 1; j < pairSize; j++) {
                 addBlackList(pairList.get(i), pairList.get(j));
+                addBlackList(pairList.get(j), pairList.get(i));
             }
         }
         result.add(pair);
@@ -104,12 +106,12 @@ public class MatchingResult {
 
     private void addBlackList(String pair1, String pair2) {
         if (course.contains("백엔드")) {
-            BackendCrew.addBlackList(pair1, pair2);
-            BackendCrew.addBlackList(pair2, pair1);
+            BackendCrew.addBlackList(pair1, pair2, level);
+            BackendCrew.addBlackList(pair2, pair1, level);
         }
         if (course.contains("프론트엔드")) {
-            FrontendCrew.addBlackList(pair1, pair2);
-            FrontendCrew.addBlackList(pair2, pair1);
+            FrontendCrew.addBlackList(pair1, pair2, level);
+            FrontendCrew.addBlackList(pair2, pair1, level);
         }
     }
 
