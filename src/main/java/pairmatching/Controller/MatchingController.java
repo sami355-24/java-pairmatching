@@ -8,7 +8,7 @@ import pairmatching.Domain.MatchingResultGroup;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
-public class MatchingController implements Controller{
+public class MatchingController implements Controller {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
@@ -33,7 +33,18 @@ public class MatchingController implements Controller{
     private void inputOptions() {
         String options = inputView.inputCourseLevelMission();
         MatchingResult result = new MatchingResult(options);
-        matchingResultGroup.addMatchingResult(options, result);
+        if (!matchingResultGroup.isExistMatchingResult(options)) {
+            matchingResultGroup.addMatchingResult(options, result);
+            return;
+        }
+        retryMatch(options, result);
+    }
+
+    private void retryMatch(String options, MatchingResult result) {
+        String userInput = inputView.inputUserIntent();
+        if (userInput.contains("네")) {
+            matchingResultGroup.addMatchingResult(options, result);
+        }
     }
 
 

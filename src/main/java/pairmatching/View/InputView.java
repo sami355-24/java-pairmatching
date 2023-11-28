@@ -3,7 +3,6 @@ package pairmatching.View;
 import static pairmatching.Message.PairMatchingPrompt.*;
 import static pairmatching.Message.PairMatchingPrompt.SELECT_FUNCTION;
 
-import pairmatching.Message.PairMatchingPrompt;
 import pairmatching.View.IO.Printer;
 import pairmatching.View.IO.Reader;
 
@@ -20,4 +19,8 @@ public class InputView {
         return Reader.getString();
     }
 
+    public String inputUserIntent() {
+        Printer.printMessage(ALREADY_EXIST_MATCHING_RESULT);
+        return Reader.getString();
+    }
 }
