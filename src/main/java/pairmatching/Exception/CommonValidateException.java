@@ -1,4 +1,4 @@
-package org.example.Exception;
+package pairmatching.Exception;
 
 public class CommonValidateException extends IllegalArgumentException{
 
