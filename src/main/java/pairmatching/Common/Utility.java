@@ -17,7 +17,7 @@ public class Utility {
         return Integer.parseInt(str);
     }
 
-    private static final String RESOURCE_PATH = "/";
+    private static final String resourcePath = "/";
 
     public static List<String> readFile(String fileName) {
         return getResourceAsStream(fileName)
@@ -26,15 +26,15 @@ public class Utility {
                 .orElse(List.of());
     }
 
-    public static List<String> readFileBetween(String start, String end) {
-        return getResourceAsStream("guide.md")
+    public static List<String> readFileBetween(String fileName, String start, String end) {
+        return getResourceAsStream(fileName)
                 .map(inputStream -> new BufferedReader(new InputStreamReader(inputStream)))
                 .map(reader -> findDataBetween(reader, start, end))
                 .orElse(List.of());
     }
 
     private static Optional<InputStream> getResourceAsStream(String fileName) {
-        String filePath = RESOURCE_PATH + fileName;
+        String filePath = resourcePath + fileName;
         return Optional.ofNullable(Utility.class.getResourceAsStream(filePath));
     }
 
