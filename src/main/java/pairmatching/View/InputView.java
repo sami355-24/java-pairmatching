@@ -10,7 +10,7 @@ import pairmatching.View.IO.Reader;
 public class InputView {
 
     public String inputMainMenu() {
-        System.out.println(MAIN_MENU);
+        System.out.print(MAIN_MENU);
         return Reader.getString();
     }
 
