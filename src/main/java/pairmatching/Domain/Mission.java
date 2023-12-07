@@ -5,7 +5,7 @@ import pairmatching.Exception.InvalidInputException;
 public enum Mission {
     CAR_RACING("자동차경주"),
     LOTTO("로또"),
-    BASEBALL("숫자야구"),
+    BASEBALL("숫자야구게임"),
 
     SHOPPING_CART("장바구니"),
     PAYMENT("결제"),

@@ -1,6 +1,7 @@
 package pairmatching.Controller;
 
 import static pairmatching.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
+import static pairmatching.Message.Excepton.ExceptionPrompt.MATCH_FAIL;
 import static pairmatching.Message.Excepton.ExceptionPrompt.RETRY;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import pairmatching.Domain.Level;
 import pairmatching.Domain.Mission;
 import pairmatching.Domain.Pair;
 import pairmatching.Exception.InvalidInputException;
+import pairmatching.Exception.MatchException;
 import pairmatching.Exception.RetryException;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
@@ -41,15 +43,18 @@ public class PairMatchMenuController implements Controller {
         List<String> input = inputView.inputCourseLevelMission();
         validateInput(input);
         hasMatchedHistoryInCourseLevelMission(input);
-        Set<Pair> pairSet = crewGroup.makePairsByCourse(Course.findCourse(input.get(course)));
-
-        if (courseLevelHistory.hasMatchedPair(input.get(course), input.get(level), pairSet)) {
-            //TODO: 동일 레벨에 매칭 기록이 있는지 확인
-        }
+        Set<Pair> pairSet = makeNotDuplicatedPair(input);
 
         courseLevelHistory.addHistory(input.get(course), input.get(level), pairSet);
         courseLevelMissionHistory.addHistory(input.get(course), input.get(level), input.get(mission), pairSet);
         outputView.showPair(pairSet);
+    }
+
+    private void validateInput(List<String> input) {
+        Course.validateCourse(input.get(course));
+        Level.validateLevel(input.get(level));
+        Mission.validateMission(input.get(mission));
+        Level.validateMissionInLevel(input.get(level), input.get(mission));
     }
 
     private void hasMatchedHistoryInCourseLevelMission(List<String> input) {
@@ -65,11 +70,17 @@ public class PairMatchMenuController implements Controller {
         }
     }
 
-
-    private void validateInput(List<String> input) {
-        Course.validateCourse(input.get(course));
-        Level.validateLevel(input.get(level));
-        Mission.validateMission(input.get(mission));
-        Level.validateMissionInLevel(input.get(level), input.get(mission));
+    private Set<Pair> makeNotDuplicatedPair(List<String> input) {
+        int duplicatedPairCount = 0;
+        while (duplicatedPairCount < 3) {
+            Set<Pair> pairSet = crewGroup.makePairsByCourse(Course.findCourse(input.get(course)));
+            if (courseLevelHistory.hasMatchedPair(input.get(course), input.get(level), pairSet)) {
+                duplicatedPairCount++;
+                continue;
+            }
+            return pairSet;
+        }
+        throw new MatchException(MATCH_FAIL.getPrompt(), new IllegalArgumentException());
     }
+
 }

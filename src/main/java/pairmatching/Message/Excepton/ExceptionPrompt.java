@@ -6,7 +6,8 @@ import static pairmatching.Message.Excepton.ExceptionPrefix.ERROR_PREFIX;
 public enum ExceptionPrompt {
     INVALID_INPUT("유효하지 않은 입력입니다. 다시 입력해 주세요."),
     NOT_FOUND("매칭 이력이 없습니다."),
-    RETRY("다른 미션을 진행합니다."),;
+    RETRY("다른 미션을 진행합니다."),
+    MATCH_FAIL("매칭에 실패했습니다."),;
 
     private final String prompt;
 
