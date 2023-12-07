@@ -2,7 +2,6 @@ package pairmatching.View;
 
 import static pairmatching.Message.Prompt.COURSE_LEVEL_MISSION;
 import static pairmatching.Message.Prompt.FRONT_MENU;
-import static pairmatching.Message.Prompt.PAIR_MATCH_MENU;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,9 +19,7 @@ public class InputView {
     }
 
     public List<String> inputCourseLevelMission() {
-        System.out.println(PAIR_MATCH_MENU);
         System.out.println(COURSE_LEVEL_MISSION);
-
         String input = Reader.getString();
         Matcher matcher = regex.matcher(input);
         if (matcher.matches())

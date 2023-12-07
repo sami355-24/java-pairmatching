@@ -5,8 +5,10 @@ import static pairmatching.Domain.Course.BACKEND;
 import static pairmatching.Domain.Course.FRONTEND;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,9 +17,17 @@ public class CrewGroup {
 
     private List<Crew> frontendCrews;
     private List<Crew> backendCrews;
+    private static CrewGroup instance;
 
-    public CrewGroup() {
+    private CrewGroup() {
         makeCrews();
+    }
+
+    public static CrewGroup getInstance(){
+        if (instance == null) {
+            instance = new CrewGroup();
+        }
+        return instance;
     }
 
     private void makeCrews(){
@@ -32,7 +42,18 @@ public class CrewGroup {
                 .collect(Collectors.toList());
     }
 
-    public List<String> findShuffledCrew(Course course){
+    public Set<Pair> makePairsByCourse(Course course){
+        Set<Pair> randomPairs = new LinkedHashSet<>();
+        Queue<Crew> shuffledCrew = findShuffledCrew(course);
+        while (shuffledCrew.size() > 3){
+            Pair pair = new Pair(shuffledCrew.poll(), shuffledCrew.poll());
+            randomPairs.add(pair);
+        }
+        randomPairs.add(new Pair(shuffledCrew));
+        return randomPairs;
+    }
+
+    private Queue<Crew> findShuffledCrew(Course course){
         List<Crew> shuffled = new LinkedList<>();
         if (course == FRONTEND) {
             shuffled = Randoms.shuffle(frontendCrews);
@@ -40,9 +61,6 @@ public class CrewGroup {
         if (course == BACKEND) {
             shuffled = Randoms.shuffle(backendCrews);
         }
-
-        return shuffled.stream()
-                .map(Crew::getName)
-                .collect(Collectors.toList());
+        return new LinkedList<>(shuffled);
     }
 }

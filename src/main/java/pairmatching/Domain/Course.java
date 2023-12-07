@@ -17,8 +17,14 @@ public enum Course {
         throw new IllegalArgumentException("존재하지 않는 코스입니다.");
     }
 
+    public static Course findCourse(String course) {
+        if (course.equals(BACKEND.getName())) {
+            return BACKEND;
+        }
+        return FRONTEND;
+    }
+
     public String getName() {
         return name;
     }
-    // 추가 기능 구현
 }

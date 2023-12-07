@@ -1,15 +1,25 @@
 package pairmatching.Domain;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 
 public class Pair {
 
     private Set<String> members;
 
-    public Pair(List<String> members) {
-        this.members = Set.copyOf(members);
+    public Pair(Crew crew1, Crew crew2) {
+        this.members = Set.of(crew1.getName(), crew2.getName());
+    }
+
+    public Pair(Queue<Crew> crews){
+        this.members = new HashSet<>();
+        for (Crew crew : crews) {
+            members.add(crew.getName());
+        }
     }
 
     @Override
