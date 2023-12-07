@@ -3,7 +3,7 @@ package pairmatching.Domain;
 public enum Mission {
     CAR_RACING("자동차경주"),
     LOTTO("로또"),
-    BASEBALL("숫자 야구"),
+    BASEBALL("숫자야구"),
 
     SHOPPING_CART("장바구니"),
     PAYMENT("결제"),

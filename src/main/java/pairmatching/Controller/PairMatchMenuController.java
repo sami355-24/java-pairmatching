@@ -48,5 +48,6 @@ public class PairMatchMenuController implements Controller {
         Course.validateCourse(input.get(course));
         Level.validateLevel(input.get(level));
         Mission.validateMission(input.get(mission));
+        Level.validateMissionInLevel(input.get(level), input.get(mission));
     }
 }

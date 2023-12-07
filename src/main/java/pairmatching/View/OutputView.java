@@ -17,5 +17,6 @@ public class OutputView {
         for (Pair pair : pairs) {
             System.out.println(String.join(" : ", pair.getMembers()));
         }
+        System.out.println();
     }
 }
