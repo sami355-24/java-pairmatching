@@ -1,5 +1,7 @@
 package pairmatching.Domain;
 
+import pairmatching.Exception.InvalidInputException;
+
 public enum Mission {
     CAR_RACING("자동차경주"),
     LOTTO("로또"),
@@ -25,7 +27,7 @@ public enum Mission {
                 mission.equals(DEPLOY.getName())) {
             return;
         }
-        throw new IllegalArgumentException("존재하지 않는 미션입니다.");
+        throw new InvalidInputException("존재하지 않는 미션입니다.", new IllegalArgumentException());
     }
     Mission(String name) {
         this.name = name;

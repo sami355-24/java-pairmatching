@@ -33,8 +33,8 @@ public class CourseLevelHistory {
         }
     }
 
-    public boolean hasMatchedPair(Course course, Level level, List<Pair> candidatePair) {
-        Set<Pair> pairSet = history.get(course.getName() + level.getName());
+    public boolean hasMatchedPair(String course, String level, Set<Pair> candidatePair) {
+        Set<Pair> pairSet = history.get(course + level);
         return pairSet.contains(candidatePair);
     }
 

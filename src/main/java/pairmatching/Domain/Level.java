@@ -1,8 +1,10 @@
 package pairmatching.Domain;
 
 import static pairmatching.Domain.Mission.*;
+import static pairmatching.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
 
 import java.util.List;
+import pairmatching.Exception.InvalidInputException;
 
 public enum Level {
     LEVEL1("레벨1", List.of("자동차경주", "로또", "숫자야구")),
@@ -27,13 +29,13 @@ public enum Level {
                 level.equals(LEVEL5.getName())) {
             return;
         }
-        throw new IllegalArgumentException("존재하지 않는 레벨입니다.");
+        throw new InvalidInputException(INVALID_INPUT.getPrompt(), new IllegalArgumentException());
     }
 
     public static void validateMissionInLevel(String level, String mission) {
         Level findLevel = findLevelByName(level);
         if (!findLevel.missions.contains(mission)) {
-            throw new IllegalArgumentException("존재하지 않는 미션입니다.");
+            throw new InvalidInputException(INVALID_INPUT.getPrompt(), new IllegalArgumentException());
         }
     }
 

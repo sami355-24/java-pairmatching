@@ -1,5 +1,9 @@
 package pairmatching.Domain;
 
+import static pairmatching.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
+
+import pairmatching.Exception.InvalidInputException;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
@@ -14,7 +18,7 @@ public enum Course {
         if (course.equals(BACKEND.getName()) || course.equals(FRONTEND.getName())) {
             return;
         }
-        throw new IllegalArgumentException("존재하지 않는 코스입니다.");
+        throw new InvalidInputException(INVALID_INPUT.getPrompt(), new IllegalArgumentException());
     }
 
     public static Course findCourse(String course) {
