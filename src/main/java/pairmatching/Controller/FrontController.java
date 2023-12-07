@@ -25,6 +25,10 @@ public class FrontController implements Controller {
             if (menu.equals("q")) {
                 break;
             }
+            if (!controllers.containsKey(menu)) {
+                outputView.showInvalidMenu();
+                continue;
+            }
             controllers.get(menu).run();
         }
     }
