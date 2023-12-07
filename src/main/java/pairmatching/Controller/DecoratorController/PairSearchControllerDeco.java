@@ -15,11 +15,12 @@ public class PairSearchControllerDeco extends PairSearchController {
         while (true) {
             try {
                 super.run();
+                break;
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             } catch (NoHistoryException e) {
                 System.out.println(e.getMessage());
-                return;
+                break;
             } finally {
                 System.out.println();
             }

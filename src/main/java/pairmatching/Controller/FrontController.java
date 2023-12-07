@@ -16,6 +16,7 @@ public class FrontController implements Controller {
     public FrontController() {
         controllers.put("1", new PairMatchMenuControllerDeco());
         controllers.put("2", new PairSearchControllerDeco());
+        controllers.put("3", new PairDeleteController());
     }
 
     @Override

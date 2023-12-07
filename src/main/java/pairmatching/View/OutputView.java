@@ -2,6 +2,7 @@ package pairmatching.View;
 
 import static pairmatching.Message.Excepton.ExceptionPrompt.INVALID_INPUT;
 import static pairmatching.Message.Prompt.COURSE_LEVEL_MISSION;
+import static pairmatching.Message.Prompt.INITIALIZED;
 import static pairmatching.Message.Prompt.PAIR_MATCH_MENU;
 import static pairmatching.Message.Prompt.PAIR_MATCH_RESULT;
 
@@ -28,5 +29,9 @@ public class OutputView {
 
     public void showInvalidMenu() {
         System.out.println(INVALID_INPUT.getPrompt());
+    }
+
+    public void initialize() {
+        System.out.println(INITIALIZED);
     }
 }

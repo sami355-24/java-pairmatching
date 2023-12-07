@@ -45,4 +45,10 @@ public class CourseLevelMissionHistory {
     public Set<Pair> getHistory(String course, String level, String mission) {
         return Collections.unmodifiableSet(history.get(course + level + mission));
     }
+
+    public void clearHistory() {
+        history.clear();
+        initHistory(FRONTEND);
+        initHistory(BACKEND);
+    }
 }

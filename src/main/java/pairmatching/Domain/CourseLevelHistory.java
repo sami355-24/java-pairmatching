@@ -2,11 +2,9 @@ package pairmatching.Domain;
 
 import static pairmatching.Domain.Course.BACKEND;
 import static pairmatching.Domain.Course.FRONTEND;
-import static pairmatching.Domain.Level.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,5 +50,11 @@ public class CourseLevelHistory {
         newPairSet.addAll(originPairSet);
         newPairSet.addAll(newPairs);
         history.put(course + level, newPairSet);
+    }
+
+    public void clearHistory() {
+        history.clear();
+        initHistory(FRONTEND);
+        initHistory(BACKEND);
     }
 }
