@@ -42,7 +42,7 @@ public class CourseLevelMissionHistory {
         history.put(course + level + mission, new LinkedHashSet<>(pairs));
     }
 
-    public Set<Pair> getHistory(Course course, Level level, Mission mission) {
-        return Collections.unmodifiableSet(history.get(course.getName() + level.getName() + mission.getName()));
+    public Set<Pair> getHistory(String course, String level, String mission) {
+        return Collections.unmodifiableSet(history.get(course + level + mission));
     }
 }

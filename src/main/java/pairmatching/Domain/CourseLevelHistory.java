@@ -5,6 +5,7 @@ import static pairmatching.Domain.Course.FRONTEND;
 import static pairmatching.Domain.Level.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,7 +46,11 @@ public class CourseLevelHistory {
         return false;
     }
 
-    public void addHistory(String course, String level, Set<Pair> pairs) {
-        history.put(course + level, Set.copyOf(pairs));
+    public void addHistory(String course, String level, Set<Pair> newPairs) {
+        Set<Pair> originPairSet = history.get(course + level);
+        Set<Pair> newPairSet = new HashSet<>();
+        newPairSet.addAll(originPairSet);
+        newPairSet.addAll(newPairs);
+        history.put(course + level, newPairSet);
     }
 }

@@ -3,6 +3,7 @@ package pairmatching.Controller;
 import java.util.HashMap;
 import java.util.Map;
 import pairmatching.Controller.DecoratorController.PairMatchMenuControllerDeco;
+import pairmatching.Controller.DecoratorController.PairSearchControllerDeco;
 import pairmatching.View.InputView;
 import pairmatching.View.OutputView;
 
@@ -14,6 +15,7 @@ public class FrontController implements Controller {
 
     public FrontController() {
         controllers.put("1", new PairMatchMenuControllerDeco());
+        controllers.put("2", new PairSearchControllerDeco());
     }
 
     @Override

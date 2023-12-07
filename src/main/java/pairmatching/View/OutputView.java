@@ -20,4 +20,8 @@ public class OutputView {
             System.out.println(String.join(" : ", pair.getMembers()));
         }
     }
+
+    public void newLine(){
+        System.out.println();
+    }
 }

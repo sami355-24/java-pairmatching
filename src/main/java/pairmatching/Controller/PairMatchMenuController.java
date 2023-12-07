@@ -34,6 +34,7 @@ public class PairMatchMenuController implements Controller {
 
     @Override
     public void run() {
+        outputView.newLine();
         outputView.showCourseLevelMission();
         matchPair();
 
